@@ -21,13 +21,13 @@ let token_expiry: Date = new Date(data.token_expiry ?? 0);
 const login = (req: Request, res: Response) => {
   const scope = "streaming user-read-private user-read-email";
   const state = Math.random().toString();
-  console.log(`Redirect URL is http://${req.get("host")}/auth/callback`);
+  console.log(`Redirect URL is https://${req.get("host")}/auth/callback`);
 
   const auth_query_parameters = new URLSearchParams({
     response_type: "code",
     client_id: spotify_client_id,
     scope: scope,
-    redirect_uri: `http://${req.get("host")}/auth/callback`,
+    redirect_uri: `https://${req.get("host")}/auth/callback`,
     state: state,
   });
 
@@ -46,7 +46,7 @@ const loginCallback = async (req: Request) => {
     method: "post",
     data: new URLSearchParams({
       code: code,
-      redirect_uri: `http://${req.get("host")}/auth/callback`,
+      redirect_uri: `https://${req.get("host")}/auth/callback`,
       grant_type: "authorization_code",
     }),
     headers: {
