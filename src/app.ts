@@ -2,7 +2,7 @@ import express from "express";
 import * as player from "./components/player";
 import * as auth from "./components/auth";
 
-const port = 5000;
+const port = Number(process.env.PORT) || 8080;
 
 const app = express();
 
